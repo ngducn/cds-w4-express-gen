@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
 var data = require('../data.json');
-let response = data.companies;
+
 
 /* GET companies */
 router.get('/', function (req, res, next) {
+    let response = data.companies;
     let page = req.query.page || 0;
 
     if (req.query.page || !req.query) {
@@ -34,6 +35,7 @@ router.get('/', function (req, res, next) {
 
 // not working yet
 router.patch('/:id', function (req, res, next) {
+    let response = data.companies;
     const idx = response.findIndex((company) => company.id == parseInt(req.params.id));
     const company = response[idx];
 
@@ -43,6 +45,7 @@ router.patch('/:id', function (req, res, next) {
 
 /* DELETE */
 router.delete('/:id', function (req, res, next) {
+    let response = data.companies;
     response = response.filter(company => company.id !== parseInt(req.params.id));
     res.send(response);
 });
